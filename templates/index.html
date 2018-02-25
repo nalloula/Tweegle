@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load staticfiles %} <!-- New line -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tweegle</title>
+<meta name="description" content="Coming Soon Responsive Template">
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "css/font-awesome.min.css"%}" rel="stylesheet">
+<link href="{% static "css/main.css"%}" rel="stylesheet">
+</head>
+<body>
+
+<!--main-->
+<section class="main">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6"> 
+        <!--logo-->
+        <div class="logo"><img src="{% static "img/logo.png"%}" data-at2x="{% static "img/logo@2x.png"%}" alt="logo"></div>
+        <!--logo end--> 
+      </div>
+      <div class="col-md-6 col-sm-6"> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12"> 
+        
+        <!--welcome-message-->
+        <header class="welcome-message text-center">
+          <h1><span class="rotate">Twitter search , Event resume</span></h1>
+        </header>
+        <!--welcome-message end--> 
+        
+        <!--sub-form-->
+        <div class="sub-form text-center">
+          <div class="row">
+            <div class="col-md-5 center-block col-sm-8 col-xs-11">
+              <form role="form" id="mc-form" methode="GET" action="{% url 'index2'%}">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Give Me An Event" name='query'>
+                  <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default" id="mc-subscribe" value="submit" name="submit">Search<i class="fa fa-paper-plane"></i></button>
+                  </span> </div>
+              </form>
+              <p id="mc-notification"></p>
+            </div>
+          </div>
+        </div>
+        <!--sub-form end--> 
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!--main end--> 
+
+
+<script src="{% static "js/jquery-1.11.1.min.js"%}"></script> 
+<script src="{% static "js/jquery.backstretch.min.js"%}"></script> 
+<script src="{% static "js/wow.min.js"%}"></script> 
+<script src="{% static "js/retina.min.js"%}"></script> 
+<script src="{% static "js/tweetie.min.js"%}"></script> 
+<script src="{% static "js/jquery.downCount.js"%}"></script> 
+<script src="{% static "js/jquery.form.min.js"%}"></script> 
+<script src="{% static "js/jquery.validate.min.js"%}"></script> 
+<script src="{% static "js/jquery.simple-text-rotator.min.js"%}"></script> 
+<script src="{% static "js/main.js"></script> 
+</body>
+</html>
