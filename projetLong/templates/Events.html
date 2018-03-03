@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<script type="text/javascript"
+	src="http://platform.twitter.com/widgets.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
+<style type="text/css">
+.back {
+	background-color: #e6f9ff;
+}
+
+.right {
+	position: absolute;
+	right: 0px;
+	width: 300px;
+	background-color: #b0e0e6;
+}
+
+h2 {
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+</style>
+<title>twitter</title>
+</head>
+
+<body class="back">
+	<div class="container">
+		<div class="row">
+			<div class="logo">
+				<a href="/tweegle"><img src="{% static "img/logo.png"%}" alt="logo"></a>
+			</div>
+		</div>
+		<div class="row">
+			<h2 align="center">Event searched: "{{ query }}"</h2>
+		</div>
+		{%if tweet %}
+		<h2>No tweets in this collection</h2>
+		{% else%}
+		<div class="row">
+			<div class="col">
+				<h3>Tweets, News and Websites</h3>
+				{% for tweet in tweets %} 
+				{% if tweet.type == "website" or tweet.type == "tweet" or tweet.type == "news" %}
+				<div>
+					<div id="{{ tweet.idFrame }}"></div>
+					<script>
+						twttr.widgets.createTweet('{{ tweet.idTweet }}',
+								document.getElementById('{{ tweet.idFrame }}'),
+								{
+									theme : 'white'
+								});
+					</script>
+
+				</div>
+				<script>
+					$(document).ready(function() {
+					});
+					window.setTimeout(function() {
+						if ($("iframe#twitter-widget-{{tweet.idFrame}}")
+								.contents().find('div.Tweet-card').length > 0) {
+							$("iframe#twitter-widget-{{tweet.idFrame}} ")
+									.contents().find('div.Tweet-header')
+									.remove();
+							$("iframe#twitter-widget-{{tweet.idFrame}}")
+									.contents().find('p.Tweet-text').remove();
+							$("iframe#twitter-widget-{{tweet.idFrame}}")
+									.contents().find(
+											'ul.Tweet-action--newsActions')
+									.remove();
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"height", "120%");
+
+						} else {
+							$("iframe#twitter-widget-{{tweet.idFrame}}")
+									.contents().find(
+											'ul.Tweet-action--newsActions')
+									.remove();
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"height", "120%");
+
+						}
+					}, 5000);
+				</script>
+				{% endif %} 
+				{% endfor %}
+			</div>
+			<div class="col">
+				{% if img == 1 %}
+				<h3 class="row">Images</h3>
+				<div class="row">
+					{% for tweet in tweets %} 
+					{% if tweet.type == "img_upload" or tweet.type == "img_url" %}
+					<div>
+						<div id="{{ tweet.idFrame }}" class= "col"></div>
+						<script>
+							twttr.widgets
+									.createTweet(
+											'{{ tweet.idTweet }}',
+											document
+													.getElementById('{{ tweet.idFrame }}'),
+											{
+												theme : 'white'
+											});
+						</script>
+					</div>
+					<script>
+						$(document).ready(function() {
+						});
+						window.setTimeout(function() {
+							$("iframe#twitter-widget-{{ tweet.idFrame }}")
+									.contents().find('div.EmbeddedTweet-tweet')
+									.remove();
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"max-height", "200px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"max-width", "200px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"margin", "2px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"padding", "0px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"border", "1px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"float", "left");
+						}, 5000);
+					</script>
+					{% endif %} 
+					{% endfor %}
+				</div>
+				{% else %}
+				<div></div>
+				{% endif %} 
+				{% if vid == 1 %}
+				<h3 class="row">Videos</h3>
+				<div class="row">
+					{% for tweet in tweets %} 
+					{% if tweet.type == "video"%}
+					<div>
+						<div id="{{ tweet.idFrame }}" class= "col"></div>
+						<script>
+							twttr.widgets
+									.createTweet(
+											'{{ tweet.idTweet }}',
+											document
+													.getElementById('{{ tweet.idFrame }}'),
+											{
+												theme : 'white'
+											});
+						</script>
+					</div>
+					<script>
+						$(document).ready(function() {
+						});
+						window.setTimeout(function() {
+							$("iframe#twitter-widget-{{ tweet.idFrame }}")
+									.contents().find('div.EmbeddedTweet-tweet')
+									.remove();
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"max-height", "200px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"max-width", "200px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"margin", "2px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"padding", "0px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"border", "1px");
+							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+									"float", "left");
+						}, 5000);
+					</script>
+					{% endif %} 
+					{% endfor %}
+				</div>
+				{% else %}
+				<div></div>
+				{% endif %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</body>
+</html>
