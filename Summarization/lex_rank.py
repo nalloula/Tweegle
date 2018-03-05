@@ -27,8 +27,8 @@ def lex_rank(nb_sentences):
     # Create the final folder that will contain event summaries
     try:
         os.system("mkdir LexrankResult")
-    except Exception:
-        pass
+    except OSError:
+        print("Folder LexrankResult already created !")
     # Construct the path to the post-processed events collection
     event_collection = glob.glob1("FinalCollection", "*.txt")
     event_collection = ["FinalCollection/"+event for event in event_collection]

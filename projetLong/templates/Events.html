@@ -52,10 +52,10 @@ h2 {
 				{% for tweet in tweets %} 
 				{% if tweet.type == "website" or tweet.type == "tweet" or tweet.type == "news" %}
 				<div>
-					<div id="{{ tweet.idFrame }}"></div>
+					<div id="{{ tweet.id_frame }}"></div>
 					<script>
-						twttr.widgets.createTweet('{{ tweet.idTweet }}',
-								document.getElementById('{{ tweet.idFrame }}'),
+						twttr.widgets.createTweet('{{ tweet.id_tweet }}',
+								document.getElementById('{{ tweet.id_frame }}'),
 								{
 									theme : 'white'
 								});
@@ -66,26 +66,26 @@ h2 {
 					$(document).ready(function() {
 					});
 					window.setTimeout(function() {
-						if ($("iframe#twitter-widget-{{tweet.idFrame}}")
+						if ($("iframe#twitter-widget-{{tweet.id_frame}}")
 								.contents().find('div.Tweet-card').length > 0) {
-							$("iframe#twitter-widget-{{tweet.idFrame}} ")
+							$("iframe#twitter-widget-{{tweet.id_frame}} ")
 									.contents().find('div.Tweet-header')
 									.remove();
-							$("iframe#twitter-widget-{{tweet.idFrame}}")
+							$("iframe#twitter-widget-{{tweet.id_frame}}")
 									.contents().find('p.Tweet-text').remove();
-							$("iframe#twitter-widget-{{tweet.idFrame}}")
+							$("iframe#twitter-widget-{{tweet.id_frame}}")
 									.contents().find(
 											'ul.Tweet-action--newsActions')
 									.remove();
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"height", "120%");
 
 						} else {
-							$("iframe#twitter-widget-{{tweet.idFrame}}")
+							$("iframe#twitter-widget-{{tweet.id_frame}}")
 									.contents().find(
 											'ul.Tweet-action--newsActions')
 									.remove();
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"height", "120%");
 
 						}
@@ -101,13 +101,13 @@ h2 {
 					{% for tweet in tweets %} 
 					{% if tweet.type == "img_upload" or tweet.type == "img_url" %}
 					<div>
-						<div id="{{ tweet.idFrame }}" class= "col"></div>
+						<div id="{{ tweet.id_frame }}" class= "col"></div>
 						<script>
 							twttr.widgets
 									.createTweet(
-											'{{ tweet.idTweet }}',
+											'{{ tweet.id_tweet }}',
 											document
-													.getElementById('{{ tweet.idFrame }}'),
+													.getElementById('{{ tweet.id_frame }}'),
 											{
 												theme : 'white'
 											});
@@ -117,20 +117,20 @@ h2 {
 						$(document).ready(function() {
 						});
 						window.setTimeout(function() {
-							$("iframe#twitter-widget-{{ tweet.idFrame }}")
+							$("iframe#twitter-widget-{{ tweet.id_frame }}")
 									.contents().find('div.EmbeddedTweet-tweet')
 									.remove();
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"max-height", "200px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"max-width", "200px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"margin", "2px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"padding", "0px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"border", "1px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"float", "left");
 						}, 5000);
 					</script>
@@ -146,13 +146,13 @@ h2 {
 					{% for tweet in tweets %} 
 					{% if tweet.type == "video"%}
 					<div>
-						<div id="{{ tweet.idFrame }}" class= "col"></div>
+						<div id="{{ tweet.id_frame }}" class= "col"></div>
 						<script>
 							twttr.widgets
 									.createTweet(
-											'{{ tweet.idTweet }}',
+											'{{ tweet.id_tweet }}',
 											document
-													.getElementById('{{ tweet.idFrame }}'),
+													.getElementById('{{ tweet.id_frame }}'),
 											{
 												theme : 'white'
 											});
@@ -162,20 +162,20 @@ h2 {
 						$(document).ready(function() {
 						});
 						window.setTimeout(function() {
-							$("iframe#twitter-widget-{{ tweet.idFrame }}")
+							$("iframe#twitter-widget-{{ tweet.id_frame }}")
 									.contents().find('div.EmbeddedTweet-tweet')
 									.remove();
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"max-height", "200px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"max-width", "200px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"margin", "2px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"padding", "0px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"border", "1px");
-							$("iframe#twitter-widget-{{ tweet.idFrame }}").css(
+							$("iframe#twitter-widget-{{ tweet.id_frame }}").css(
 									"float", "left");
 						}, 5000);
 					</script>

@@ -10,10 +10,11 @@ import json
 import glob
 
 if __name__ == "__main__":
+    # Create the final collection repository
     try:
         os.system("mkdir FinalCollection")
-    except Exception:
-        pass
+    except OSError:
+        print("Folder FinalCollection already created !")
     for id_event in glob.glob1("Collection", "*.json"):
         event_path = 'Collection/'+id_event
         with open(event_path, encoding="utf8") as input_file:
