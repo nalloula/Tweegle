@@ -12,11 +12,11 @@ class Tweet(object):
     def __init__(self, id_tweet=None, description=None, tweet_type=None, tweet_list=None, id_frame=None):
 
         """ A Tweet has 4 attributes according the event collection.
-        idTweet for the relative position of the tweet in its corresponding event.
-        description for tweet text content.
-        type can be img_upload, img_url, video, news, website or tweet.
-        tweet_list is the list of absolute ids for the tweet in the Twitter API.
-        idFrame is the position of the tweet in function of its type.
+        - idTweet for the relative position of the tweet in its corresponding event.
+        - description for tweet text content.
+        - type can be img_upload, img_url, video, news, website or tweet.
+        - tweet_list is the list of absolute ids for the tweet in the Twitter API.
+        - idFrame is the position of the tweet in function of its type.
         """
 
         self.id_tweet = id_tweet
