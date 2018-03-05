@@ -1,58 +1,58 @@
 <!DOCTYPE html>
+
 {% load static %}
-<!-- New line -->
 <html>
 <head>
+<title> Tweegle </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tweegle</title>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous">
+href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+crossorigin="anonymous">
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	crossorigin="anonymous"></script>
-<style type="text/css">
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+crossorigin="anonymous"></script>
+<style>
 .hideView {
 	background-color: white;
 	width: 100%;
 	color: black;
 }
 
-body {
-	background: url({% static 'img/tweegle.png' %})
-no-repeat
-center
-fixed
-;
-background-color
-:
-#00C2FC
-;
+.backgroud-body {
+	background-color: #00C2FC;
 }
-.search {
-	margin-left: 25%;
-	margin-right: 25%;
-	width: 50%;
-	margin-top: 25%;
+
+.marg {
+	margin-top: 160px;
 }
 </style>
-</head>
-<body>
+</head>	
+<body class = "backgroud-body">
 	<div class="search">
-		<form role="form" id="mc-form">
-			<div class="input-group">
-				<input type="text" class="form-control" id="btn-search"
-					placeholder="Give Me An Event" name='query'> <span
-					class="input-group-btn"><div>choose an event</div></span>
-			</div>
-			<table class="hideView">
-			</table>
-		</form>
+		<table class="marg" align="center">
+			<tr>
+				<td>
+					<div>
+						<img src="{% static 'img/tweegle.png' %}" alt = "image">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="input-group">
+						<input type="text" class="form-control" id="btn-search"
+							placeholder="Give Me An Event" name='query'> <span
+							class="input-group-btn">choose an event</span>
+					</div>
+					<table class="hideView">
+					</table>
+				</td>
+			</tr>
+		</table>
 	</div>
-
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script>
 		$("#btn-search").keyup(function() {
@@ -79,9 +79,9 @@ background-color
 								for (; i < query.length - 1; i++) {
 									console.log(query[i])
 									strHtml += "<tr><td colspan='2'><a href=\"/tweegle/Event?query="
-											+ query[i]
+											+ encodeURIComponent(query[i])
 											+ "\">"
-											+ query[i].substring(0, 90)
+											+ query[i].substring(0, 70)
 											+ "</a></td></tr>"
 								}
 								$(".hideView").append(strHtml)

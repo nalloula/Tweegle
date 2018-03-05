@@ -5,15 +5,18 @@ The views interact with the model (models.py) and the templates (files in templa
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
+from django.views.decorators.csrf import ensure_csrf_cookie
 from tweegle.models import Event
 import tweegle.importfromcollection as ipm
 
+@ensure_csrf_cookie
 def index(request):
     """ This function returns the index html page.
     """
 
     return render(request, 'index.html')
 
+@ensure_csrf_cookie
 def events(request):
     """ This function interacts with events.html template. It takes a request (event selection
     from the dropdown list and returns its corresponding tweets.
@@ -53,6 +56,7 @@ def events(request):
                     'vid' : vid}
     return render(request, 'Events.html', context_dict)
 
+@ensure_csrf_cookie
 def search_events(request):
     """ This function looks for and returns 10 events containing keywords present in user request.
     """

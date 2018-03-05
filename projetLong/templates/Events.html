@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+
+{% load static %}
 <html>
 <head>
-<script type="text/javascript"
-	src="http://platform.twitter.com/widgets.js"></script>
+<script src="http://platform.twitter.com/widgets.js"></script>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
@@ -13,9 +13,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
 	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
 	crossorigin="anonymous"></script>
-<style type="text/css">
+<style>
 .back {
-	background-color: #e6f9ff;
+	background-color: #00C2FC;
 }
 
 .right {
@@ -26,26 +26,32 @@
 }
 
 h2 {
-	margin-bottom: 30px;
-	margin-top: 30px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	color: #FFFFFF;
+	font-family: "Comic Sans MS";
+	font-weight: bold;
+}
+
+h3 {
+	color: #FFFFFF;
+	font-family: "Comic Sans MS";
+	font-weight: bold;
 }
 </style>
-<title>twitter</title>
+<title>tweegle</title>
 </head>
-
 <body class="back">
 	<div class="container">
 		<div class="row">
 			<div class="logo">
-				<a href="/tweegle"><img src="{% static "img/logo.png"%}" alt="logo"></a>
+				<a href="/tweegle"><img src="{% static "img/logo.png" %} " alt="logo"></a>
 			</div>
 		</div>
 		<div class="row">
-			<h2 align="center">Event searched: "{{ query }}"</h2>
+			<h2 align="center">Event searched: {{ query }}</h2>
 		</div>
-		{%if tweet %}
-		<h2>No tweets in this collection</h2>
-		{% else%}
+		{% if tweets %}
 		<div class="row">
 			<div class="col">
 				<h3>Tweets, News and Websites</h3>
@@ -186,6 +192,10 @@ h2 {
 				<div></div>
 				{% endif %}
 			</div>
+		</div>
+		{% else %}
+		<div class="row">
+			<h2>No tweets in this collection</h2>
 		</div>
 		{% endif %}
 	</div>
