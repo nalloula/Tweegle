@@ -26,7 +26,9 @@ def lex_rank(nb_sentences):
 
     # Create the final folder that will contain event summaries
     try:
+        path = "LexrankResult/"+str(nb_sentences)
         os.system("mkdir LexrankResult")
+        os.mkdir(path)
     except OSError:
         print("Folder LexrankResult already created !")
     # Construct the path to the post-processed events collection
@@ -44,7 +46,7 @@ def lex_rank(nb_sentences):
         # Summarize the document using Lexrank method. We keep at the end nb_sentences sentences.
         summarizer = LexRankSummarizer()
         summary = summarizer(parser.document, min(nb_sentences, nb_lines))
-        event_summary = open('LexrankResult/'+id_event+'.txt', "wb")
+        event_summary = open('LexrankResult/'+str(nb_sentences)+'/'+id_event+'.txt', "wb")
         for sentence in summary:
             event_summary.write(((str(sentence)+"\r\n")).encode('utf-8', 'ignore'))
         event_summary.close()
@@ -52,6 +54,14 @@ def lex_rank(nb_sentences):
 
 if __name__ == "__main__":
     NB_SENTENCES = 0
-    while NB_SENTENCES <= 0:
-        NB_SENTENCES = int(input("Please give a positive number of sentences for the resume : "))
+    try:
+        CHOICE = input("Please give a positive number of sentences for the resume, by default 7: ")
+        if CHOICE == "":
+            NB_SENTENCES = 7
+        elif  int(CHOICE) <= 0:
+            NB_SENTENCES = 7
+        else:
+            NB_SENTENCES = int(CHOICE)
+    except ValueError as error_message:
+        print(error_message)
     lex_rank(NB_SENTENCES)
