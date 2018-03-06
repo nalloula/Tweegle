@@ -31,34 +31,30 @@ def events(request):
         for lst in queryset_list:
             list_results = []
             list_results = ipm.get_tweet_by_id_event(lst.id)
-            if list_results:
-                i = 0
-                # Every tweet has a different id_frame.
-                for tweet in list_results:
-                    if(tweet.type == "news" or tweet.type == "tweet" or tweet.type == "website"):
-                        tweet.id_frame = i
-                        tweet.id_tweet = tweet.tweet_list[0][0]
-                        i = i + 1
-                for tweet in list_results:
-                    if(tweet.type == "img_upload" or tweet.type == "img_url"):
-                        img = 1
-                        tweet.id_frame = i
-                        tweet.id_tweet = tweet.tweet_list[0][0]
-                        i = i + 1
-                for tweet in list_results:
-                    if tweet.type == "video":
-                        vid = 1
-                        tweet.id_frame = i
-                        tweet.id_tweet = tweet.tweet_list[0][0]
-                        i = i + 1
-                context_dict = {'tweets' : list_results,
-                                'query' : query,
-                                'img' : img,
-                                'vid' : vid}
-            else:
-                context_dict = {'tweets' : list_results,
-                                'query' : query}
-            return render(request, 'Events.html', context_dict)
+            i = 0
+            # Every tweet has a different id_frame.
+            for tweet in list_results:
+                if(tweet.type == "news" or tweet.type == "tweet" or tweet.type == "website"):
+                    tweet.id_frame = i
+                    tweet.id_tweet = tweet.tweet_list[0][0]
+                    i = i + 1
+            for tweet in list_results:
+                if(tweet.type == "img_upload" or tweet.type == "img_url"):
+                    img = 1
+                    tweet.id_frame = i
+                    tweet.id_tweet = tweet.tweet_list[0][0]
+                    i = i + 1
+            for tweet in list_results:
+                if tweet.type == "video":
+                    vid = 1
+                    tweet.id_frame = i
+                    tweet.id_tweet = tweet.tweet_list[0][0]
+                    i = i + 1
+    context_dict = {'tweets' : list_results,
+                    'query' : query,
+                    'img' : img,
+                    'vid' : vid}
+    return render(request, 'Events.html', context_dict)
 
 @ensure_csrf_cookie
 def search_events(request):
